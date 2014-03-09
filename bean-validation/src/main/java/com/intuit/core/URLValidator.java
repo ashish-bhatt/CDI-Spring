@@ -1,14 +1,16 @@
 package com.intuit.core;
 
 import java.net.MalformedURLException;
+import java.util.logging.Logger;
 
+import javax.inject.Inject;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 public class URLValidator implements ConstraintValidator<URL, String> {
 	
-	//@Inject
-	//SomeClass obj;
+	@Inject
+	Logger logger;
 	private String protocol;
 	private String host;
 	private int port;
@@ -19,7 +21,7 @@ public class URLValidator implements ConstraintValidator<URL, String> {
 		this.port = url.port();
 	}
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-
+		logger.info("starting validation logic");
 		if(value == null || value.length() == 0)
 			return true;
 		java.net.URL url;
@@ -39,6 +41,7 @@ public class URLValidator implements ConstraintValidator<URL, String> {
 		if (port != -1 && url.getPort() != port) {
 			return false;
 		}
+		
 		return true;
 	}
 }

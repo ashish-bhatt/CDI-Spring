@@ -1,13 +1,14 @@
 package com.intuit.core;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 
-
+@Named("greeting")
+@RequestScoped
 public class SimpleGreeting {
 
 	private String greeting;
-	@Size(max=4)
+
 	private String email = null;
 	
 	public void setGreeting(String greeting) {
@@ -23,10 +24,5 @@ public class SimpleGreeting {
 	
 	public String getEmail(){
 		return email;
-	}
-	
-//	@AssertTrue
-	public boolean validateSomething(@NotNull String greeting) {
-		return true;
 	}
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
 import javax.validation.Validator;
 
 import com.intuit.core.ItemServerConnection;
@@ -28,8 +29,8 @@ public class exampleCDIServlet extends HttpServlet {
 	SimpleGreeting greeting;
 	@Inject
 	ItemServerConnection connection;
-	@Inject
-	Validator val;
+//	@Inject
+//	Validator val;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -37,26 +38,14 @@ public class exampleCDIServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    boolean flag = false;
 	    try{
-	    	//flag = greeting.validateSomething(null);
-	    	//greeting.setEmail(request.getParameter("URL"));
-	    	//String var = ""; //"ftp://internet.address.com:21/path/file.gz"
-	    	//if()
-	    	String message = "";
 	    	connection.setFtpServerURL(request.getParameter("URL"));
 	    	connection.setName(request.getParameter("name"));
-	    	Set<ConstraintViolation<ItemServerConnection>> violations = val.validate(connection);
-	    	if(0 == violations.size()){
-	    		//var = "everything fine";
-	    		request.setAttribute("message", "URL submitted successfully");
-	    	}else{
-	    		//var = "something wrong";//+violations.size()+violations.iterator().next().getInvalidValue();
-	    		Iterator<ConstraintViolation<ItemServerConnection>> it = violations.iterator();
-	    		while(it.hasNext()){
-	    			message +=  it.next().getMessage() + " : ";
-	    		}
-	    		request.setAttribute("message", message);
-	    	}
+	    	connection.returnSomeString();
+
+	    	request.setAttribute("message", "URL submitted successfully");
+
 	    } catch(ConstraintViolationException e){
+	    	request.setAttribute("message", e.getConstraintViolations().iterator().next().getMessage());
 	    	//Handle the exception
 	    }
 	    

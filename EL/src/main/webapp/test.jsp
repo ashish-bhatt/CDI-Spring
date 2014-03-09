@@ -7,6 +7,9 @@
 <title>Test page here</title>
 </head>
 <body>
-Hey there using @Inject
+Hello
+${greeting.setEmail('hellothere@intuit.com')}
+${greeting.getEmail()}
+
 </body>
 </html>

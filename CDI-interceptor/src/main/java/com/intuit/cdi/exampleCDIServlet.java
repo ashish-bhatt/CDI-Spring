@@ -14,12 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
+import com.intuit.core.Loggable;
 import com.intuit.core.SimpleGreeting;
 
 /**
  * Servlet implementation class exampleCDIServlet
  */
 @WebServlet("/test")
+@Loggable
 public class exampleCDIServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

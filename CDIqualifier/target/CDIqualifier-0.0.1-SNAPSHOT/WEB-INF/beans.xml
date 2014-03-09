@@ -7,7 +7,7 @@
                       http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
     bean-discovery-mode="all">
     
-<!--     <alternatives>
+	<alternatives>
     	<class>com.intuit.bookservice.ISBN</class>
-    </alternatives> -->
+    </alternatives>
 </beans>

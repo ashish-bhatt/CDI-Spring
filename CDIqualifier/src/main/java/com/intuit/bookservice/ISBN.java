@@ -3,7 +3,7 @@ package com.intuit.bookservice;
 import java.util.Random;
 
 import javax.enterprise.inject.Alternative;
-@Alternative//
+@Alternative
 //@ThirteenDigits//
 public class ISBN implements NumberGenerator{
 	public String generateNumber() {
